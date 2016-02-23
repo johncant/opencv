@@ -109,6 +109,15 @@ macro(ocv_add_dependencies full_modname)
   endif()
   unset(__python_idx)
 
+  # hack for node
+  set(__node_idx)
+  list(FIND OPENCV_MODULE_${full_modname}_WRAPPERS "node" __node_idx)
+  if (NOT __node_idx EQUAL -1)
+    list(REMOVE_ITEM OPENCV_MODULE_${full_modname}_WRAPPERS "node")
+    list(APPEND OPENCV_MODULE_${full_modname}_WRAPPERS "node")
+  endif()
+  unset(__node_idx)
+
   ocv_list_unique(OPENCV_MODULE_${full_modname}_REQ_DEPS)
   ocv_list_unique(OPENCV_MODULE_${full_modname}_OPT_DEPS)
   ocv_list_unique(OPENCV_MODULE_${full_modname}_PRIVATE_REQ_DEPS)

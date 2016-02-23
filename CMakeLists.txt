@@ -563,6 +563,9 @@ endif(BUILD_DOCS)
 # --- Python Support ---
 include(cmake/OpenCVDetectPython.cmake)
 
+# --- Node Support ---
+include(cmake/OpenCVDetectNode.cmake)
+
 # --- Java Support ---
 include(cmake/OpenCVDetectApacheAnt.cmake)
 if(ANDROID)
@@ -1234,6 +1237,15 @@ endif()
 
 status("")
 status("  Python (for build):"  PYTHON_DEFAULT_AVAILABLE THEN "${PYTHON_DEFAULT_EXECUTABLE}" ELSE NO)
+
+# ========================== node ============================
+
+status("")
+status("  Node:")
+status("    Headers:"     NODE_FOUND  THEN "${NODE_INCLUDE_DIR} (ver dont-care-yet)"       ELSE NO)
+if(BUILD_opencv_node)
+  status("    Building node bindings!")
+endif()
 
 # ========================== java ==========================
 status("")
